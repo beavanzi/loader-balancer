@@ -1,26 +1,11 @@
 const express = require('express');
 const axios = require('axios');
-const bodyParser = require('body-parser');
-
+const roundRobin = require('./roundRobin');
 const app = express();
+const args = process.argv[2]
 
-app.use(bodyParser.json());
+const counter = new roundRobin();
 
-let counter = 0;
-
-
-function roundRobin() {
-    if (counter === 0) {
-        counter++;
-        return 'http://localhost:3001';
-    } else if (counter === 1) {
-        counter++;
-        return 'http://localhost:3002';
-    } else if (counter === 2) {
-        counter = 0;
-        return 'http://localhost:3003';
-    }
-}
 
 app.listen(3000, () => {
     console.log('Listening on port 3000');
@@ -28,7 +13,22 @@ app.listen(3000, () => {
 
 
 app.get('/', async (req, res) => {
-    const url = roundRobin();
-    const request = await axios.get(url)
-    return res.send(request.data)
+    if (args === '1') { 
+        const url = counter.traditional();
+        const request = await axios.get(url)
+        return res.send(request.data)
+    }
+    else {
+        const requestType = req.headers['conection-type'];
+        let url = '';
+        if (requestType === 'TCP') {
+            url = 'http://localhost:3001'
+        }
+        else if (requestType === 'UDP') {
+            url = counter.conectionType()
+        }
+        const request = await axios.get(url)
+        return res.send(request.data)
+        
+    }
 })
