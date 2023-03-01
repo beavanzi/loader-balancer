@@ -58,6 +58,6 @@ Caso nâo tenha o insomnia siga o tutorial no (https://docs.insomnia.rest/)
 
 Para fazer os testes de forma automatica
 
-´´´
+```
 node ./teste <Num Repetições> <Modo do Round Robin>
-´´´
+```
