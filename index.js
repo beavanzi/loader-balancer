@@ -29,6 +29,5 @@ app.get('/', async (req, res) => {
         }
         const request = await axios.get(url)
         return res.send(request.data)
-        
     }
 })
