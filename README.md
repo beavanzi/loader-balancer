@@ -51,3 +51,5 @@ No quarto:
 ```
 node ./S3/index.js
 ``` 
+
+Para chamar a API importe o arquivo insomnia.json
