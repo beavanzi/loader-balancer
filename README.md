@@ -53,3 +53,5 @@ node ./S3/index.js
 ``` 
 
 Para chamar a API importe o arquivo insomnia.json
+
+Caso nâo tenha o insomnia siga o tutorial no (https://docs.insomnia.rest/)
